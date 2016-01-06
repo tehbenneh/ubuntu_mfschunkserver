@@ -11,12 +11,11 @@ RUN mv /etc/mfs/mfschunkserver.cfg.sample /etc/mfs/mfschunkserver.cfg ;
 RUN sed -i '/# LABELS =/c\LABELS = D' /etc/mfs/mfschunkserver.cfg ;
 RUN sed -i '/MFSCHUNKSERVER_ENABLE=false/c\MFSCHUNKSERVER_ENABLE=true' /etc/default/moosefs-chunkserver ;
 RUN chmod -R 777 /mnt/sdb1 ;
+
 EXPOSE 9419
 EXPOSE 9420
 EXPOSE 9422
 
-RUN echo "/usr/sbin/mfschunkserver -f start" > /start.sh ;
-RUN chmod 777 /start.sh ;
 RUN chmod -R 777 /mnt/sdb1 ;
 
 CMD ["/usr/sbin/mfschunkserver", "-f", "start"]
